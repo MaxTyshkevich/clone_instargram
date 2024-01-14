@@ -14,7 +14,6 @@ export const config = {
         password: { label: 'Password:*', type: 'password' },
       },
       authorize: async function (credentials, req) {
-        console.log({ prisma });
         const user = await prisma.user.findUnique({
           where: {
             email: credentials?.login,
@@ -37,7 +36,6 @@ export const config = {
   },
   callbacks: {
     session: async ({ session, token, user }) => {
-      console.log(`session:`, { session, token, user });
       if (token) {
         session.user.id = token.id;
         session.user.name = token.name;
@@ -49,7 +47,6 @@ export const config = {
     },
 
     jwt: async ({ token, user }) => {
-      console.log(`jwt:`, { token, user });
       const prismaUser = await prisma.user.findFirst({
         where: {
           email: token.email,

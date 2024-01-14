@@ -24,6 +24,7 @@ import {
 import { cn } from '@/lib/utils';
 import { Switch } from '@/components/ui/switch';
 import { useTheme } from 'next-themes';
+import { signOut } from 'next-auth/react';
 
 enum Theme {
   DARK = 'dark',
@@ -98,7 +99,10 @@ export const MoreDropdown = () => {
               <Moon size="20" />
               <span>Switch appearance</span>
             </DropdownMenuItem>
-            <DropdownMenuItem className="menuItem">
+            <DropdownMenuItem
+              className="menuItem"
+              onClick={() => signOut({ callbackUrl: '/' })}
+            >
               <LogOut size="20" />
               <span>logout</span>
             </DropdownMenuItem>
