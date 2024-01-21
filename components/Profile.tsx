@@ -15,7 +15,7 @@ export const Profile = ({ user }: ProfileProps) => {
   const href = `/dashboard/${user.username}`;
   const pathname = usePathname();
   const isActive = pathname === href;
-  console.log({ user });
+
   return (
     <Link
       className={buttonVariants({

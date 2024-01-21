@@ -1,4 +1,4 @@
-import type { Session, User } from 'next-auth';
+import type { DefaultUser, Session, User } from 'next-auth';
 import type { JWT } from '@auth/core/jwt';
 
 declare module 'next-auth/jwt' {

@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  pageExtensions: ['mdx', 'md', 'tsx', 'ts'],
   images: {
     remotePatterns: [
       {
@@ -9,10 +10,6 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'lh3.googleusercontent.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'instagram.fpnq13-1.fna.fbcdn.net',
       },
     ],
   },

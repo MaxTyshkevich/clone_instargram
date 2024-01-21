@@ -3,7 +3,6 @@ import { withAuth } from 'next-auth/middleware';
 export default withAuth({
   callbacks: {
     authorized({ req, token }) {
-      console.log(`middleware => authorezed =>`, req.nextUrl);
       const isLoggedIn = !!token;
       const isOnDashboard = req.nextUrl.pathname.startsWith('/dashboard');
       if (isOnDashboard) {
