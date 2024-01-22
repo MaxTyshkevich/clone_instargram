@@ -2,7 +2,11 @@ import { z } from 'zod';
 
 export const PostSchema = z.object({
   id: z.string(),
-  fileUrl: z.string().url({ message: 'File URL must be a valid!' }),
+  fileUrl: z
+    .string({
+      required_error: 'Upload image for your Post',
+    })
+    .url({ message: 'File URL must be a valid!' }),
   caption: z.string({}).optional(),
 });
 
