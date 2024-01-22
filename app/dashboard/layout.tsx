@@ -1,7 +1,12 @@
 import React from 'react';
 import { SideNav } from './components/SideNav/SideNav';
 
-const Dashboardlayout = ({ children }: { children: React.ReactNode }) => {
+const Dashboardlayout = ({
+  children,
+}: {
+  modal: React.ReactNode;
+  children: React.ReactNode;
+}) => {
   return (
     <div className="flex h-screen relative flex-col-reverse ms:flex-col md:flex-row md:overflow-hidden">
       <div className="w-auto  lg:w-64 md:border-r">
@@ -15,5 +20,3 @@ const Dashboardlayout = ({ children }: { children: React.ReactNode }) => {
 };
 
 export default Dashboardlayout;
-
-/* 4: 21 */

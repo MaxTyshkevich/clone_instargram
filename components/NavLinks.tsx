@@ -18,6 +18,9 @@ export const NavLinks = () => {
         const LinkIcon = link.icon;
         const isActive = pathname === link.href;
 
+        const PropsCreateLink =
+          link.name === 'Create' ? { passHref: true, scroll: false } : {};
+
         return (
           <Link
             key={link.name}
@@ -27,6 +30,7 @@ export const NavLinks = () => {
               className: cn('navLink', { 'hidden md:flex': link.hideOnMobile }),
               size: 'lg',
             })}
+            {...PropsCreateLink}
           >
             <LinkIcon className="w-6" />
             <span

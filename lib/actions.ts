@@ -14,6 +14,7 @@ export const createPostAction = async (values: CreatePostData) => {
   }
   const { id: userId } = session.user;
 
+  console.log(`asda`);
   const validatedFields = CreatePostSchema.safeParse(values);
 
   if (!validatedFields.success) {
@@ -22,7 +23,7 @@ export const createPostAction = async (values: CreatePostData) => {
       message: 'Missing Fields. Failed to Create Post.',
     };
   }
-  const { fileUrl, caption } = validatedFields.data;
+
   try {
     await prisma.post.create({
       data: {
