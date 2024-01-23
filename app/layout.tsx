@@ -26,7 +26,6 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  ...rest
 }: {
   children: React.ReactNode;
 }) {
@@ -41,8 +40,8 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-            <Toaster />
             {children}
+            <Toaster />
           </ThemeProvider>
         </AuthProvider>
       </body>

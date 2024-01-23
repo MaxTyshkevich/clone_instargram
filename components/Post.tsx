@@ -8,7 +8,9 @@ import {
 } from '@/components/ui/card';
 import { UserAvatar } from './UserAvatar';
 
-export const Post = () => {
+export const Post = ({}:{
+  post:
+}) => {
   return (
     <Card>
       <CardHeader>

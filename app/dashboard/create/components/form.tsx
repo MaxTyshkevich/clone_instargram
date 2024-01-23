@@ -4,7 +4,8 @@ import Image from 'next/image';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/button'; /*  */
+import { Error } from '@/components/Error'; /*  */
 
 import {
   Form,
@@ -57,7 +58,7 @@ export const FormPost = ({ createPostAction }: FormPostProps) => {
     console.log(`CreatePage submit`);
     const res = await createPostAction(values);
     if (res) {
-      toast.error(res.message);
+      return toast.error(<Error res={res} />);
     }
   };
 
