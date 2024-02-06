@@ -93,3 +93,12 @@ export function auth(
 ) {
   return getServerSession(...args, config);
 }
+
+export const getAuthUserId = async () => {
+  const session = await auth();
+
+  if (!session) {
+    throw Error('You must be signed in to use this feature');
+  }
+  return session.user.id;
+};

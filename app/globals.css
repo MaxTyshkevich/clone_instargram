@@ -74,9 +74,9 @@
   .dialogContent {
     @apply bg-white dark:bg-neutral-800 !p-0 overflow-hidden !gap-0;
   }
-  /*  .upload-button > *[data-ut-element='button'] {
-    @apply bg-primary;
-  } */
+  .upload-button > *[data-ut-element='button'] {
+    @apply bg-primary dark:text-secondary;
+  }
 }
 
 /* .upload-button {

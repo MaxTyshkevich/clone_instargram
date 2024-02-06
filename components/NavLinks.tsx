@@ -11,7 +11,6 @@ export const NavLinks = () => {
   const pathname = usePathname();
   const segments = useSelectedLayoutSegment();
 
-  console.log({ pathname, segments });
   return (
     <>
       {links.map((link) => {

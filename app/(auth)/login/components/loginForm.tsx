@@ -1,6 +1,11 @@
-import { acme } from '@/app/layout';
 import React from 'react';
 import { LoginButton } from './loginButton';
+import { Acme } from 'next/font/google';
+
+const acme = Acme({
+  weight: '400',
+  subsets: ['latin'],
+});
 
 export const LoginForm = () => {
   return (

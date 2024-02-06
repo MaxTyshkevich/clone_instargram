@@ -2,7 +2,12 @@ import { SwitchCamera } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 import { buttonVariants } from './ui/button';
-import { acme } from '@/app/layout';
+import { Acme } from 'next/font/google';
+
+const acme = Acme({
+  weight: '400',
+  subsets: ['latin'],
+});
 
 export const Logo = () => {
   return (

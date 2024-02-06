@@ -55,7 +55,6 @@ export const FormPost = ({ createPostAction }: FormPostProps) => {
   const fileUrl = form.watch('fileUrl');
 
   const onSubmit = async (values: z.infer<typeof CreatePostSchema>) => {
-    console.log(`CreatePage submit`);
     const res = await createPostAction(values);
     if (res) {
       return toast.error(<Error res={res} />);
@@ -91,12 +90,10 @@ export const FormPost = ({ createPostAction }: FormPostProps) => {
                       <FormItem>
                         <FormControl>
                           <UploadButton
-                            className="upload-button ut-button:bg-primary"
+                            className="upload-button"
                             {...field}
                             endpoint="imageUploader"
                             onClientUploadComplete={(res) => {
-                              console.log({ res, form });
-
                               form.setValue('fileUrl', res[0].url);
                               toast.success(`Uploading Complite`);
                             }}

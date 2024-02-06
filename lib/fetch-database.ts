@@ -1,19 +1,37 @@
 'use server';
 
+import { PostWithExtras } from '@/app-type';
 import prisma from '@/lib/prisma';
+import { Prisma } from '@prisma/client';
 
-export const getPosts = () => {
+export const getPosts = (): Prisma.PrismaPromise<PostWithExtras[]> => {
   try {
     const posts = prisma.post.findMany({
       include: {
         user: true,
-        likes: true,
-        comments: true,
+        likes: {
+          include: { user: true },
+        },
+        comments: {
+          include: { user: true },
+          orderBy: {
+            createdAt: 'desc',
+          },
+        },
+
+        savedBy: true,
+      },
+
+      orderBy: {
+        createdAt: 'desc',
       },
     });
 
     return posts;
-  } catch (error) {}
+  } catch (error) {
+    console.log(`Database error:`, error);
+    throw Error('Failed to fetch post');
+  }
 };
 
 getPosts();

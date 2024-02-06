@@ -25,7 +25,7 @@ export const Profile = ({ user }: ProfileProps) => {
       })}
       href={href}
     >
-      <UserAvatar imageSrc={user.image || undefined} name={user.name} />
+      <UserAvatar imageSrc={user.image || null} name={user.name || null} />
       <span
         className={`${cn('hidden lg:block', {
           'font-extrabold': isActive,

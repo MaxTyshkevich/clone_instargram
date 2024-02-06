@@ -12,7 +12,7 @@ const Dashboardlayout = ({
       <div className="w-auto  lg:w-64 md:border-r">
         <SideNav />
       </div>
-      <div className="flex-1 w-full md:overflow-y-auto max-w-7xl mx-auto mt-[61px] md:mt-0 px-4 py-2 md:p-12">
+      <div className="flex-1 w-full overflow-y-auto max-w-7xl mx-auto mt-[61px] md:mt-0 px-4 py-2 md:p-12">
         {children}
       </div>
     </div>

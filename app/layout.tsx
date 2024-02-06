@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import { Inter, Acme } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { AuthProvider } from '@/components/AuthProvider';
@@ -10,11 +10,6 @@ import { NextSSRPlugin } from '@uploadthing/react/next-ssr-plugin';
 import { Toaster } from 'sonner';
 
 const inter = Inter({ subsets: ['latin'] });
-
-export const acme = Acme({
-  weight: '400',
-  subsets: ['latin'],
-});
 
 export const metadata: Metadata = {
   title: {
