@@ -12,7 +12,7 @@ export const SubmitButton = ({
 }: {
   children: React.ReactNode;
   className?: string;
-  props: ButtonProps[];
+  props?: ButtonProps[];
 }) => {
   const { pending } = useFormStatus();
   return (

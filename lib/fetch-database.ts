@@ -34,13 +34,116 @@ export const getPosts = (): Prisma.PrismaPromise<PostWithExtras[]> => {
   }
 };
 
-getPosts();
+export const getPostById = async (
+  postId: string
+): Promise<PostWithExtras | null> => {
+  const post = await prisma.post.findUnique({
+    where: {
+      id: postId,
+    },
+    include: {
+      user: true,
+      likes: {
+        include: { user: true },
+      },
+      comments: {
+        include: { user: true },
+        orderBy: {
+          createdAt: 'desc',
+        },
+      },
 
-/* 
- id: 'clrpkpzk60002k7u7y5btmelo',
-      createdAt: 2024-01-22T23:43:48.295Z,
-      updatedAt: 2024-01-22T23:43:48.295Z,
-      caption: 'lalala',
-      fileUrl: 'https://utfs.io/f/219c3797-7fd3-4c2d-b0bd-001eb158a78a-rtrlts.png',
-      userId: 'clr6450kb0000zdh22jfl04k0'
-*/
+      savedBy: true,
+    },
+  });
+  /*  throw Error('my error') */
+  return post;
+};
+
+export const fetchPostByUsername = async (
+  username: string,
+  postId?: string
+): Promise<PostWithExtras[]> => {
+  try {
+    const posts = await prisma.post.findMany({
+      where: {
+        user: {
+          username,
+        },
+      },
+
+      include: {
+        comments: {
+          include: {
+            user: true,
+          },
+          orderBy: {
+            createdAt: 'desc',
+          },
+        },
+        likes: {
+          include: {
+            user: true,
+          },
+        },
+        savedBy: true,
+        user: true,
+      },
+
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+
+    return posts;
+  } catch (error) {
+    throw Error('Failed to fetch post');
+  }
+};
+
+export async function fetchProfile(username: string) {
+  try {
+    const data = await prisma.user.findUnique({
+      where: {
+        username,
+      },
+      include: {
+        posts: {
+          orderBy: {
+            createdAt: 'desc',
+          },
+        },
+        saved: {
+          orderBy: {
+            createdAt: 'desc',
+          },
+        },
+        followedBy: {
+          include: {
+            follower: {
+              include: {
+                following: true,
+                followedBy: true,
+              },
+            },
+          },
+        },
+        following: {
+          include: {
+            following: {
+              include: {
+                following: true,
+                followedBy: true,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    return data;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch profile');
+  }
+}

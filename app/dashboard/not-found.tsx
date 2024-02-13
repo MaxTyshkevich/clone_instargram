@@ -1,18 +1,14 @@
-'use client';
-
 import { buttonVariants } from '@/components/ui/button';
+import type { Metadata } from 'next';
 import { cn } from '@/lib/utils';
 import { Frown } from 'lucide-react';
 import Link from 'next/link';
 
-export default function NotFoundPage({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
-  console.log({ error });
+export const metadata: Metadata = {
+  title: 'page not found',
+};
+
+export default function NotFoundPage() {
   return (
     <main className="flex h-full flex-col items-center justify-center gap-2">
       <Frown className="w-10 text-gray-400" />

@@ -1,4 +1,5 @@
 import React from 'react';
+import { SinglePost } from './components/SinglePost';
 
 const PostPage = ({
   params: { id },
@@ -7,7 +8,14 @@ const PostPage = ({
     id: string;
   };
 }) => {
-  return <div>PostPage id: {id}</div>;
+  return (
+    <div>
+      <div>PostPage id: {id}</div>
+      <div>
+        <SinglePost postId={id} />
+      </div>
+    </div>
+  );
 };
 
 export default PostPage;

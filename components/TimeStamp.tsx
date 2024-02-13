@@ -15,7 +15,7 @@ export const TimeStamp = ({ data, className }: TimeStampProps) => {
         'font-medium text-neutral-500 dark:text-neutral-400 text-xs',
         className
       )}
-      formatter={(value, unit) => `${value} ${unit[0]}`}
+      formatter={(value, unit) => `${value}${unit[0]}`}
     />
   );
 };
