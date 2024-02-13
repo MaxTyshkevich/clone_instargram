@@ -138,7 +138,7 @@ export const addComment = async ({
 }) => {
   try {
     const userId = await getAuthUserId();
-    const newComment = await prisma.comment.create({
+    await prisma.comment.create({
       data: {
         userId,
         postId,
