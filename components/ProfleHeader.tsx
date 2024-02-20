@@ -2,7 +2,7 @@ import { ChevronDown, Settings, UserPlus } from 'lucide-react';
 import { Button } from './ui/button';
 
 type ProfleHeaderProps = {
-  username: string;
+  username: string | null;
 };
 
 export const ProfleHeader = ({ username }: ProfleHeaderProps) => {

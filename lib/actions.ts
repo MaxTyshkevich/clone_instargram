@@ -148,3 +148,52 @@ export const addComment = async ({
     revalidatePath('/dashboard');
   } catch (error) {}
 };
+
+export const bookmarkPost = async (postId: string) => {
+  try {
+    const userId = await getAuthUserId();
+
+    const post = await prisma.post.findUnique({
+      where: {
+        id: postId,
+      },
+    });
+
+    if (!post) {
+      return { message: 'Post not found!' };
+    }
+
+    const bookmark = await prisma.savedPost.findUnique({
+      where: {
+        postId_userId: {
+          postId,
+          userId,
+        },
+      },
+    });
+
+    if (!bookmark) {
+      await prisma.savedPost.create({
+        data: {
+          postId,
+          userId,
+        },
+      });
+    } else {
+      await prisma.savedPost.delete({
+        where: {
+          postId_userId: {
+            postId,
+            userId,
+          },
+        },
+      });
+    }
+
+    revalidatePath('/dashboard');
+  } catch (error) {
+    return {
+      message: 'Database Error: Failed to Bookmark Post.',
+    };
+  }
+};

@@ -1,14 +1,16 @@
 'use client';
 
 import React from 'react';
-import { Button } from '../ui/button';
+import { Button, ButtonProps } from '../ui/button';
+
+type ActionButtonProps = Partial<ButtonProps> & {
+  children: React.ReactNode;
+};
 
 export const ActionButton = ({
   children,
   ...buttonProps
-}: {
-  children: React.ReactNode;
-}) => {
+}: ActionButtonProps) => {
   return (
     <Button
       variant="ghost"

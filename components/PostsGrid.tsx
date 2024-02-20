@@ -2,6 +2,7 @@ import { PostWithExtras } from '@/app-type';
 import Link from 'next/link';
 import Image from 'next/image';
 import { HeartIcon, MessageCircle } from 'lucide-react';
+import { PostSkeleton } from './post/Skeletons';
 
 export const PostsGrid = ({ posts }: { posts: PostWithExtras[] }) => {
   if (posts.length === 0) {
@@ -17,7 +18,7 @@ export const PostsGrid = ({ posts }: { posts: PostWithExtras[] }) => {
         <Link
           key={post.id}
           href={`/dashboard/p/${post.id}`}
-          className="revative flex items-center overflow-hidden justify-center h-44 md:h-64 lg:h-80"
+          className="group revative flex items-center overflow-hidden justify-center h-44 md:h-64 lg:h-80 col-span-1"
         >
           <Image
             src={post.fileUrl}
@@ -30,8 +31,10 @@ export const PostsGrid = ({ posts }: { posts: PostWithExtras[] }) => {
           <div className="opacity-0 group-hover:opacity-100 flex transition items-center justify-center space-x-6">
             {post.likes.length > 0 && (
               <div className="flex items-center font-bold space-x-1">
-                <HeartIcon className="text-white fill-white" />
-                <p className="text-white">{post.likes.length}</p>
+                <HeartIcon className="dark:text-white  dark:fill-white" />
+                <p className="text-black dark:text-white">
+                  {post.likes.length}
+                </p>
               </div>
             )}
 

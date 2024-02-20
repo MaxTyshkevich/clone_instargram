@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { SinglePost } from './components/SinglePost';
+import { SinglePostSkeleton } from '@/components/post/Skeletons';
 
 const PostPage = ({
   params: { id },
@@ -10,9 +11,11 @@ const PostPage = ({
 }) => {
   return (
     <div>
-      <div>PostPage id: {id}</div>
       <div>
-        <SinglePost postId={id} />
+        {/*  <Suspense>
+          <SinglePost postId={id} />
+        </Suspense> */}
+        <SinglePostSkeleton />
       </div>
     </div>
   );

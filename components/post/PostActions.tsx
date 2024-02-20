@@ -29,7 +29,7 @@ export const PostActions = async ({
           <MessageButton postId={post.id} />
           <SendButton postId={post.id} />
         </div>
-        <SaveButton />
+        <SaveButton post={post} userId={userId} />
       </div>
       {!!likesCount && (
         <div className="text-sm font-medium">

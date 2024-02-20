@@ -19,7 +19,6 @@ export const PostComments = ({
   user: User;
 }) => {
   const [postValue, setPostValue] = useState('');
-  console.log({ comments });
 
   const [optimisticComments, addOptimisticComments] = useOptimistic<
     CommentsWithExtras[]
@@ -35,13 +34,17 @@ export const PostComments = ({
   return (
     <div className="space-y-0.5 px-3 sm:px-0 flex flex-col flex-grow">
       {commentsCount > 1 && (
-        <Link href={`/dashboard/p/${postId}`}>
+        <Link
+          href={`/dashboard/p/${postId}`}
+          scroll={false}
+          className="text-sm font-medium text-neutral-500"
+        >
           {' '}
           View all {commentsCount} comments
         </Link>
       )}
       <div>
-        {optimisticComments.map((comment) => {
+        {optimisticComments.slice(0, 3).map((comment) => {
           return (
             <div
               key={comment.id}
@@ -67,8 +70,8 @@ export const PostComments = ({
             postId,
             user,
           };
-          setPostValue('');
           addOptimisticComments(post);
+          setPostValue('');
           await addComment(post);
         }}
       >
@@ -79,10 +82,11 @@ export const PostComments = ({
           onChange={({ target: { value } }: ChangeEvent<HTMLInputElement>) =>
             setPostValue(value)
           }
+          value={postValue}
         />
         <Button
           className={cn('absolute right-2 dark:text-primary hidden', {
-            ['flex']: postValue,
+            ['flex']: postValue.trim().length,
           })}
           variant={'link'}
         >
