@@ -11,11 +11,10 @@ const PostPage = ({
 }) => {
   return (
     <div>
-      <div>
-        {/*  <Suspense>
+      <div className="">
+        <Suspense fallback={<SinglePostSkeleton />}>
           <SinglePost postId={id} />
-        </Suspense> */}
-        <SinglePostSkeleton />
+        </Suspense>
       </div>
     </div>
   );

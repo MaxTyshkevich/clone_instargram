@@ -1,6 +1,6 @@
 'use server';
 
-import { PostWithExtras } from '@/app-type';
+import { PostWithExtras, UserWithExtras } from '@/app-type';
 import prisma from '@/lib/prisma';
 import { Prisma } from '@prisma/client';
 
@@ -101,7 +101,9 @@ export const fetchPostByUsername = async (
   }
 };
 
-export async function fetchProfile(username: string) {
+export async function fetchProfile(
+  username: string
+): Promise<UserWithExtras | null> {
   try {
     const data = await prisma.user.findUnique({
       where: {

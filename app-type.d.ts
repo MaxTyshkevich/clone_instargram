@@ -1,4 +1,4 @@
-import type { Comment, Like, Post, User } from '@prisma/client';
+import type { Comment, Like, Post, User, Follows } from '@prisma/client';
 
 export type PostWithExtras = Post & {
   user: User;
@@ -15,4 +15,17 @@ export type LikeWithExtras = Like & {
   user: User;
 };
 
-export type createLikeSchema = Pick<Like, 'postId' | 'userId'>;
+export type UserWithFollows = User & {
+  following: Follows[];
+  followedBy: Follows[];
+};
+
+export type FollowerWithExtras = Follows & { follower: UserWithFollows };
+export type FollowingWithExtras = Follows & { following: UserWithFollows };
+
+export type UserWithExtras = User & {
+  posts: Post[];
+  saved: SavedPost[];
+  followedBy: FollowerWithExtras[];
+  following: FollowingWithExtras[];
+};

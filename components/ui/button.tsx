@@ -18,8 +18,7 @@ const buttonVariants = cva(
           'bg-secondary text-secondary-foreground hover:bg-secondary/80',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
-        myLink:
-          'rounded-md bg-blue-500 px-4 py-2 text-sm text-white transition-colors hover:bg-blue-400',
+        post: 'text-sky-500 text-sm font-semibold hover:text-sky-700 dark:hover:text-white disabled:cursor-not-allowed dark:disabled:text-slate-500 disabled:text-sky-500/40 disabled:hover:text-sky-500/40 dark:disabled:hover:text-slate-500',
       },
       size: {
         default: 'h-10 px-4 py-2',

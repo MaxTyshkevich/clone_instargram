@@ -17,16 +17,19 @@ export const Comment = ({ comment }: CommentProps) => {
         <UserAvatar imageSrc={userComment.image} />
       </Link>
 
-      <div>
+      <div className="space-y-1.5">
         <div className="flex items-center text-sm space-x-1.5 leading-none">
-          <Link href={`/dashboard/${userComment.username}`}>
+          <Link
+            href={`/dashboard/${userComment.username}`}
+            className="font-semibold"
+          >
             {userComment.username}
           </Link>
           <p className="font-medium">{comment.body}</p>
         </div>
         <div className="flex items-center">
           <TimeStamp data={comment.createdAt} />
-          <Button className="text-sm" variant={'link'}>
+          <Button className="text-xs" variant={'link'}>
             Reply
           </Button>
         </div>

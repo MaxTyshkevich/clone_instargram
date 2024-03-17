@@ -1,7 +1,7 @@
 'use client';
 
 import { PostWithExtras } from '@/app-type';
-
+import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   Dialog,
   DialogContent,
@@ -20,7 +20,7 @@ import Link from 'next/link';
 
 type PostOptionsProps = {
   post: PostWithExtras;
-  userId: string;
+  userId?: string;
   className?: string;
 };
 
@@ -64,6 +64,10 @@ export const PostOptions = ({ className, post, userId }: PostOptionsProps) => {
             Edit
           </Link>
         )}
+
+        <form action="" className="postOption border-0">
+          <button className="w-full p-3">Hide like count</button>
+        </form>
       </DialogContent>
     </Dialog>
   );

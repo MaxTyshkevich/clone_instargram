@@ -22,6 +22,7 @@ import { Comment } from '@/components/post/Comment';
 import { MiniPost } from '@/components/post/MiniPost';
 import Link from 'next/link';
 import { UserAvatar } from '@/components/UserAvatar';
+import { PostActions } from '@/components/post/PostActions';
 
 export const SinglePost = async ({ postId }: { postId: string }) => {
   const userId = await getAuthUserId();
@@ -30,23 +31,26 @@ export const SinglePost = async ({ postId }: { postId: string }) => {
   if (!post) {
     notFound();
   }
-  console.log({ post, commentslength: post.comments.length });
+
   return (
-    <Card className="flex">
-      <div className="relative overflow-hidden h-[450px] w-full max-w-sm lg:max-w-lg">
+    <Card className="mx-auto hidden md:flex max-w-3xl lg:max-w-4xl">
+      <div className="relative overflow-hidden h-[450px] w-full max-w-sm lg:max-w-lg bg-black">
         <Image
+          className="md:rounded-l-md"
           src={post.fileUrl}
           fill
           alt={`post view`}
-          className="md:rounded-l-md object-cover"
         />
       </div>
 
       <div className="flex flex-col flex-1 max-w-sm">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between border-b px-5 py-3">
           <HoverCard>
             <HoverCardTrigger asChild>
-              <Link href={`/dashboard/${post.user.username}`}>
+              <Link
+                href={`/dashboard/${post.user.username}`}
+                className="font-semibold text-sm"
+              >
                 {post.user.username}
               </Link>
             </HoverCardTrigger>
@@ -63,6 +67,7 @@ export const SinglePost = async ({ postId }: { postId: string }) => {
               </div>
             </HoverCardContent>
           </HoverCard>
+          <PostOptions post={post} userId={userId} />
         </div>
 
         {post.comments.length === 0 && (
@@ -82,6 +87,20 @@ export const SinglePost = async ({ postId }: { postId: string }) => {
             ))}
           </ScrollArea>
         )}
+
+        <div className="px-2 hidden md:block mt-auto border-y p-2.5">
+          <PostActions post={post} userId={userId} />
+          <time
+            dateTime={post.createdAt.toDateString()}
+            className="text-[11px] uppercase text-zinc-500 font-medium"
+          >
+            {new Date(post.createdAt).toLocaleDateString('en-US', {
+              month: 'long',
+              day: 'numeric',
+              year: 'numeric',
+            })}
+          </time>
+        </div>
       </div>
     </Card>
   );
